@@ -1,12 +1,13 @@
 <div class="trading-content">
-  <div class="example-box"   cdkDrag>
-    I can only be dragged up/down
+  <div class="example-box" cdkDrag>
+    <b>Ativo 2</b>
   </div>
-
   <div class="example-box"   cdkDrag>
-    I can only be dragged left/right
+    <b>Ativo 1</b>
   </div>
-
+  <div class="example-box" cdkDrag>
+    <b>Ativo 3</b>
+  </div>
 </div>
     <mat-sidenav position="end" #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"

@@ -1,0 +1,5 @@
+{
+  "name": "VOLIND ",
+  "description": "VOLATIVITY AND INDCATORS",
+  "addons": ["heroku-postgresql"]
+}

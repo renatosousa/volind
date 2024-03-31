@@ -1,0 +1,54 @@
+<mat-toolbar color="primary" class="trading-toolbar">
+
+    <img src="assets/logo.png" class="logo-trading"><img />
+    <button color="primary"
+    type="button"
+    aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+
+    <span>TRADING</span>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+
+    <mat-sidenav  #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+        <div class="bakgraund" >
+        </div>
+        <div style="display: flex; flex-direction: column; justify-content: space-between; ">
+            <div style="padding: 10px; margin-bottom: 100%; ">
+
+              <mat-nav-list *ngFor="let indicador of indicadores">
+              <a mat-list-item [routerLink]=indicador.rota>
+                <div class="font-trading-menu">
+                  <mat-icon style="margin-right: 10px;">
+                    {{ indicador?.logo }}</mat-icon>
+                    {{ indicador?.indicatorType}}
+                </div>
+              </a>
+              </mat-nav-list>
+            </div>
+            <div style="padding: 10px;">
+                <mat-nav-list color="primary">
+                   <a mat-list-item routerLink="configurations">
+                        <div class="font-trading-menu"><mat-icon style="margin-right: 10px;">settings</mat-icon>
+                            Configurações</div>
+                    </a>
+                </mat-nav-list>
+            </div>
+        </div>
+
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+
+
+
+
+        <!-- Add Content Here -->
+        <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

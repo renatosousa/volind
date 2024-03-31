@@ -1,0 +1,45 @@
+
+.sidenav {
+  width: 15%;
+
+}
+
+
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+}
+
+
+.logo-trading{
+  padding: 12px;
+  height:60px;
+  width: 60px;
+}
+.bakgraund{
+  background-color: #6c78d2;
+}
+
+
+.trading-toolbar{
+    background-color: #6c78d2;
+ display: flex; justify-content: space-between;
+}
+
+mat-sidenav {
+  margin-top: 50px;
+  background-color: #babfff;
+}
+
+.font-trading-menu{
+ color: #192ecd;
+ font-weight: bold;
+ font-family: Arial, Helvetica, sans-serif;
+ display: flex;
+ flex-direction: row;
+
+
+
+}

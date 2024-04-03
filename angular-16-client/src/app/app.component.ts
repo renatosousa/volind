@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { IndicadoresService } from './services/indicadores.service';
+import { Indicator } from './models/indicator.interface';
 
 @Component({
   selector: 'app-root',
@@ -19,12 +20,16 @@ export class AppComponent implements OnInit{
 
   constructor(private breakpointObserver: BreakpointObserver, private indicadoresService: IndicadoresService) {}
 
-  indicadores: any[] = [];
+  indicadores: Indicator[] = [];
 
     ngOnInit(): void {
-    this.indicadoresService.retornarListaDeIndicadores().subscribe(
-      data => {
-        this.indicadores = data;  })
+   // this.indicadoresService.retornarListaDeIndicadores().subscribe(
+   //   data => {
+   //     this.indicadores = data;
+    //  }
+      // )
+     this.indicadores = this.indicadoresService.retornarListaDeIndicadores();
+
   }
 
 

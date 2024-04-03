@@ -8,7 +8,7 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
   </button>
 
-    <span>TRADING</span>
+    <span>Volind</span>
 </mat-toolbar>
 
 <mat-sidenav-container class="sidenav-container">
@@ -21,7 +21,7 @@
             <div style="padding: 10px; margin-bottom: 100%; ">
 
               <mat-nav-list *ngFor="let indicador of indicadores">
-              <a mat-list-item [routerLink]=indicador.rota>
+              <a mat-list-item [routerLink]="['volatividade/', indicador?.id]">
                 <div class="font-trading-menu">
                   <mat-icon style="margin-right: 10px;">
                     {{ indicador?.logo }}</mat-icon>

@@ -1,27 +1,50 @@
 <div class="trading-content">
-  <div class="example-box" cdkDrag>
-    <b>Ativo 2</b>
-  </div>
-  <div class="example-box"   cdkDrag>
-    <b>Ativo 1</b>
-  </div>
-  <div class="example-box" cdkDrag>
-    <b>Ativo 3</b>
+   
+  <div cdkDropListGroup>
+  <div class="example-container">
+    <h2>Indicadores Favoritos</h2>
+
+    
+<div cdkDropList style="width: 1000px; height: 200px; border: 10px;"
+      [cdkDropListData]="featureIndicatorAplicate"
+      class="example-list" cdkDropListSortingDisabled
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of featureIndicatorAplicate" 
+      cdkDrag>{{item.nome}}</div>
+    </div>
+</div>
+  
+
+  <div class="example-container">
+    <h2>Indicadores Disponíveis</h2> 
+    <div
+      cdkDropList
+      [cdkDropListData]="indicator?.featureIndicator"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of
+       indicator?.featureIndicator" cdkDrag>{{item.nome}}</div>
+    </div>
   </div>
 </div>
+
+</div>
+
+
+
     <mat-sidenav position="end" #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
       <div class="bakgraund">
       </div>
       <div style="display: flex; flex-direction: column; justify-content: space-between; ">
-        <div style="padding: 10px; margin-bottom: 100%; ">
+        <div style="padding: 10px; margin-bottom: 60px; ">
 
         </div>
         <div style="padding: 10px;">
           <mat-nav-list color="primary">  <form class="example-form">
                 <mat-form-field class="example-full-width">
-                  <mat-label>Assignee</mat-label>
+                  <mat-label>Buscar</mat-label>
                   <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
                   <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                     <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
@@ -32,7 +55,21 @@
               </form>
           </mat-nav-list>
         </div>
+
+  <div class="volind-container">
+    <h2>Indicadores Disponíveis</h2>
+    <div cdkDropList [cdkDropListData]="indicator?.featureIndicator" class="volind-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="volind-box" *ngFor="let item of
+         indicator?.featureIndicator" cdkDrag>{{item.nome}}</div>
+    </div>
+  </div>
+        
       </div>
+
+
+ 
+  <!-- All lists in here will be connected. -->
 
 
     </mat-sidenav>

@@ -12,6 +12,10 @@ const routes: Routes = [
     path: 'volatividade',
     component: VolatividadeComponent
   },
+      {
+    path: 'volatividade/:id',
+    component: VolatividadeComponent
+  },
   {
     path: 'longandshort',
     component:  LongandshortComponent

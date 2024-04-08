@@ -17,6 +17,8 @@ import { FeatureIndicator } from 'src/app/models/featureIndicator';
 
  })
 export class VolatividadeComponent implements OnInit {
+    htmlContent: string = 'https://www.google.com/finance/quote/petr4:BVMF';
+
     myControl = new FormControl<FeatureIndicator | any>('');
     options: any[] = [{ name: 'Petro' }, { name: 'Dolar' }, { name: 'Bovespa' }];
     indicator:  Indicator | undefined;

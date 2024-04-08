@@ -1,18 +1,25 @@
 <div class="trading-content">
-   <div cdkDropListGroup>
-  <div class="example-container">
-    <h2>{{indicator?.descricao}}</h2>
+  <div cdkDropListGroup>
+    <div class="example-container">
+      <h2>{{indicator?.descricao}}</h2>
 
     
-<div cdkDropList style="width: 1000px; height: 200px; border: 10px;"
+<div cdkDropList style="width: 900px; height: 100vh; border: 10px;"
       [cdkDropListData]="featureIndicatorAplicate"
       class="example-list" cdkDropListSortingDisabled
       (cdkDropListDropped)="drop($event)">
       <div class="example-box" *ngFor="let item of featureIndicatorAplicate" 
       cdkDrag>{{item.nome}}</div>
+    
+    <div style="width:100px; heigth:121px">
+  <!-- <iframe src="https://www.google.com/finance/quote/petr4:BVMF" frameborder="0"></iframe> -->asfdasfadfs
+    <!-- <iframe [src]="htmlContent" frameborder="1"></iframe> -->
+
+</div>
     </div>
 </div>
   
+
 
   <!-- <div class="example-container">
     <h2>Indicadores Disponíveis</h2> 
@@ -42,6 +49,7 @@
         </div>
             <h2>Indicadores Disponíveis</h2>
 
+ 
         <div style="padding: 10px;">
           <mat-nav-list color="primary"> 
              <form >

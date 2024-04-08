@@ -14,7 +14,7 @@ const INDICATORS : Indicator[] = [
     rota: "longandshort",
      featureIndicator: [
       {
-        nome: "Opção de Compra PETR4",
+        nome: "PETR4",
         link: "www.bolsadevalores.com.br/opcao/PETR4",
         fonte: "Bolsa de Valores",
         descricao: "Opção de compra de ações da Petrobras",
@@ -23,7 +23,7 @@ const INDICATORS : Indicator[] = [
         dataUltimaAtualizacao: new Date()
       },
       {
-        nome: "Opção de Venda VALE3",
+        nome: "VALE3",
         link: "www.bolsadevalores.com.br/opcao/VALE3",
         fonte: "Bolsa de Valores",
         descricao: "Opção de venda de ações da Vale",
@@ -32,7 +32,7 @@ const INDICATORS : Indicator[] = [
         dataUltimaAtualizacao: new Date(),
       },
       {
-        nome: "Opção de Compra ITUB4",
+        nome: "ITUB4",
         link: "www.bolsadevalores.com.br/opcao/ITUB4",
         fonte: "Bolsa de Valores",
         descricao: "Opção de compra de ações do Itaú",

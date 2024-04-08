@@ -17,7 +17,7 @@ import { FeatureIndicator } from 'src/app/models/featureIndicator';
 
  })
 export class VolatividadeComponent implements OnInit {
-    myControl = new FormControl<string | any>('');
+    myControl = new FormControl<FeatureIndicator | any>('');
     options: any[] = [{ name: 'Petro' }, { name: 'Dolar' }, { name: 'Bovespa' }];
     indicator:  Indicator | undefined;
   indicatorAplicate: Indicator | undefined;
@@ -26,7 +26,7 @@ export class VolatividadeComponent implements OnInit {
  
 
   drop(event: CdkDragDrop<any>) {
-    if (event.previousContainer === event.container) {
+     if (event.previousContainer === event.container) {
      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       transferArrayItem(
@@ -41,7 +41,8 @@ export class VolatividadeComponent implements OnInit {
       console.log(event)
   }
 
-  filteredOptions: Observable<any[]> | undefined;
+  filteredOptions: Observable<any> | undefined = undefined;
+
   constructor(private indicatorService: IndicadoresService, private router: ActivatedRoute,  private breakpointObserver: BreakpointObserver) {}
 
 
@@ -55,34 +56,49 @@ isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Ha
 
 
   ngOnInit() {
+   
      this.router.params.subscribe(params => {
        this.indicator = this.requisitaIndicators(params['id'])
-            
+       //RETORNA INDICADORES SELECIONADOS EM SUAS POSICOES E CARACTERISTICAS:
+       //LOADING...
+        this.featureIndicatorAplicate = [];
 
+       this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => {
+        const nome = typeof value === 'string' ? value : null
+        return nome ? this._filter(nome as string) :
+          this.indicator?.featureIndicator.slice();
+        
+      }),
+    );
+ 
      }
   )
 
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => {
-        const name = typeof value === 'string' ? value : value?.name;
-        return name ? this._filter(name as string) : this.options.slice();
-      }),
-    );
   }
 
   displayFn(user: any): string {
     return user && user.name ? user.name : '';
   }
 
-  private _filter(name: string): any[] {
-    const filterValue = name.toLowerCase();
-
-    return this.options.filter(option => option.name.toLowerCase().includes(filterValue));
+  private _filter(name: string) {
+    const filterValue = name.toLowerCase(); 
+    return  this.indicator?.featureIndicator.filter(option => option.nome.toLowerCase().includes(filterValue));
   }
 
   private requisitaIndicators(id: string) {
   return  this.indicator = this.indicatorService.retornarIndicador(id);
   }
+applyOption(event: Event, item: any) {
+  const selectElement = event.target as HTMLSelectElement;
+  const selectedOption = selectElement.value;
+
+  // Agora você tem a opção selecionada e o item correspondente.
+  // Você pode aplicar a opção ao item como desejar.
+  console.log(`Opção selecionada: ${selectedOption}, item: ${item.nome}`);
+}
+  
+  
 
 }

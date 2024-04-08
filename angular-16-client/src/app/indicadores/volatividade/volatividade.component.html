@@ -1,8 +1,7 @@
 <div class="trading-content">
-   
-  <div cdkDropListGroup>
+   <div cdkDropListGroup>
   <div class="example-container">
-    <h2>Indicadores Favoritos</h2>
+    <h2>{{indicator?.descricao}}</h2>
 
     
 <div cdkDropList style="width: 1000px; height: 200px; border: 10px;"
@@ -15,7 +14,7 @@
 </div>
   
 
-  <div class="example-container">
+  <!-- <div class="example-container">
     <h2>Indicadores Disponíveis</h2> 
     <div
       cdkDropList
@@ -25,10 +24,10 @@
       <div class="example-box" *ngFor="let item of
        indicator?.featureIndicator" cdkDrag>{{item.nome}}</div>
     </div>
-  </div>
-</div>
+  </div> -->
 
-</div>
+
+
 
 
 
@@ -41,15 +40,18 @@
         <div style="padding: 10px; margin-bottom: 60px; ">
 
         </div>
+            <h2>Indicadores Disponíveis</h2>
+
         <div style="padding: 10px;">
-          <mat-nav-list color="primary">  <form class="example-form">
-                <mat-form-field class="example-full-width">
+          <mat-nav-list color="primary"> 
+             <form >
+                <mat-form-field class="example-full-width" class="volind-form">
                   <mat-label>Buscar</mat-label>
                   <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
                   <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                      {{option.name}}
-                    </mat-option>
+                    <!-- <mat-option *ngFor="let  featureIndicator of filteredOptions | async" [value]="featureIndicator">
+                      {{featureIndicator.nome}}
+                    </mat-option> -->
                   </mat-autocomplete>
                 </mat-form-field>
               </form>
@@ -57,12 +59,15 @@
         </div>
 
   <div class="volind-container">
-    <h2>Indicadores Disponíveis</h2>
     <div cdkDropList [cdkDropListData]="indicator?.featureIndicator" class="volind-list"
       (cdkDropListDropped)="drop($event)">
-      <div class="volind-box" *ngFor="let item of
-         indicator?.featureIndicator" cdkDrag>{{item.nome}}</div>
+       <mat-option *ngFor="let  featureIndicator of filteredOptions | async" [value]="featureIndicator" cdkDrag>
+        
+          {{featureIndicator.nome}} 
+     </mat-option>
     </div>
+
+   
   </div>
         
       </div>
@@ -73,3 +78,4 @@
 
 
     </mat-sidenav>
+</div></div>

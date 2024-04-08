@@ -4,7 +4,7 @@ export interface FeatureIndicator {
   fonte: string;
   descricao: string;
   precoExercicio: number;
-   dataExpiracao: Date;
+  dataExpiracao: Date;
   dataUltimaAtualizacao: Date;
 }
 

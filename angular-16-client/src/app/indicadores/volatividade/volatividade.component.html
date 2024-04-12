@@ -3,26 +3,26 @@
     <div class="example-container">
       <h2>{{indicator?.descricao}}</h2>
 
-    
+
 <div cdkDropList style="width: 900px; height: 100vh; border: 10px;"
       [cdkDropListData]="featureIndicatorAplicate"
       class="example-list" cdkDropListSortingDisabled
       (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of featureIndicatorAplicate" 
+      <div class="example-box" *ngFor="let item of featureIndicatorAplicate"
       cdkDrag>{{item.nome}}</div>
-    
+
     <div style="width:100px; heigth:121px">
-  <!-- <iframe src="https://www.google.com/finance/quote/petr4:BVMF" frameborder="0"></iframe> -->asfdasfadfs
+  <!-- <iframe src="https://serpapi.com/searches/1c06c86fe6aac672/6614c45dc504e9a928a9ba4b" frameborder="0"></iframe> -->
     <!-- <iframe [src]="htmlContent" frameborder="1"></iframe> -->
 
 </div>
     </div>
 </div>
-  
+
 
 
   <!-- <div class="example-container">
-    <h2>Indicadores Disponíveis</h2> 
+    <h2>Indicadores Disponíveis</h2>
     <div
       cdkDropList
       [cdkDropListData]="indicator?.featureIndicator"
@@ -49,9 +49,9 @@
         </div>
             <h2>Indicadores Disponíveis</h2>
 
- 
+
         <div style="padding: 10px;">
-          <mat-nav-list color="primary"> 
+          <mat-nav-list color="primary">
              <form >
                 <mat-form-field class="example-full-width" class="volind-form">
                   <mat-label>Buscar</mat-label>
@@ -70,18 +70,18 @@
     <div cdkDropList [cdkDropListData]="indicator?.featureIndicator" class="volind-list"
       (cdkDropListDropped)="drop($event)">
        <mat-option *ngFor="let  featureIndicator of filteredOptions | async" [value]="featureIndicator" cdkDrag>
-        
-          {{featureIndicator.nome}} 
+
+          {{featureIndicator.nome}}
      </mat-option>
     </div>
 
-   
+
   </div>
-        
+
       </div>
 
 
- 
+
   <!-- All lists in here will be connected. -->
 
 

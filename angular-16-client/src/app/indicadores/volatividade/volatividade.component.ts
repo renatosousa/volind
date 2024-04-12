@@ -15,40 +15,40 @@ import { FeatureIndicator } from 'src/app/models/featureIndicator';
   styleUrls: ['./volatividade.component.scss'],
 
 
- })
+})
 export class VolatividadeComponent implements OnInit {
-    htmlContent: string = 'https://www.google.com/finance/quote/petr4:BVMF';
+  htmlContent: string = 'https://www.google.com/finance/quote/petr4:BVMF';
 
-    myControl = new FormControl<FeatureIndicator | any>('');
-    options: any[] = [{ name: 'Petro' }, { name: 'Dolar' }, { name: 'Bovespa' }];
-    indicator:  Indicator | undefined;
+  myControl = new FormControl<FeatureIndicator | any>('');
+  options: any[] = [{ name: 'Petro' }, { name: 'Dolar' }, { name: 'Bovespa' }];
+  indicator: Indicator | undefined;
   indicatorAplicate: Indicator | undefined;
   featureIndicator: FeatureIndicator[] = [];
   featureIndicatorAplicate: FeatureIndicator[] = [];
- 
+
 
   drop(event: CdkDragDrop<any>) {
-     if (event.previousContainer === event.container) {
-     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
-         event.previousIndex,
+        event.previousIndex,
         event.currentIndex,
       );
     }
   }
   drop2(event: any) {
-      console.log(event)
+    console.log(event)
   }
 
   filteredOptions: Observable<any> | undefined = undefined;
 
-  constructor(private indicatorService: IndicadoresService, private router: ActivatedRoute,  private breakpointObserver: BreakpointObserver) {}
+  constructor(private indicatorService: IndicadoresService, private router: ActivatedRoute, private breakpointObserver: BreakpointObserver) { }
 
 
-isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
       shareReplay()
@@ -58,25 +58,29 @@ isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Ha
 
 
   ngOnInit() {
-   
-     this.router.params.subscribe(params => {
-       this.indicator = this.requisitaIndicators(params['id'])
-       //RETORNA INDICADORES SELECIONADOS EM SUAS POSICOES E CARACTERISTICAS:
-       //LOADING...
-        this.featureIndicatorAplicate = [];
 
-       this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => {
-        const nome = typeof value === 'string' ? value : null
-        return nome ? this._filter(nome as string) :
-          this.indicator?.featureIndicator.slice();
-        
-      }),
-    );
- 
-     }
-  )
+    this.indicatorService.search().subscribe(d => {
+      alert(d)
+    })
+
+    this.router.params.subscribe(params => {
+      this.indicator = this.requisitaIndicators(params['id'])
+      //RETORNA INDICADORES SELECIONADOS EM SUAS POSICOES E CARACTERISTICAS:
+      //LOADING...
+      this.featureIndicatorAplicate = [];
+
+      this.filteredOptions = this.myControl.valueChanges.pipe(
+        startWith(''),
+        map(value => {
+          const nome = typeof value === 'string' ? value : null
+          return nome ? this._filter(nome as string) :
+            this.indicator?.featureIndicator.slice();
+
+        }),
+      );
+
+    }
+    )
 
   }
 
@@ -85,22 +89,19 @@ isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Ha
   }
 
   private _filter(name: string) {
-    const filterValue = name.toLowerCase(); 
-    return  this.indicator?.featureIndicator.filter(option => option.nome.toLowerCase().includes(filterValue));
+    const filterValue = name.toLowerCase();
+    return this.indicator?.featureIndicator.filter(option => option.nome.toLowerCase().includes(filterValue));
   }
 
   private requisitaIndicators(id: string) {
-  return  this.indicator = this.indicatorService.retornarIndicador(id);
+    return this.indicator = this.indicatorService.retornarIndicador(id);
   }
-applyOption(event: Event, item: any) {
-  const selectElement = event.target as HTMLSelectElement;
-  const selectedOption = selectElement.value;
+  applyOption(event: Event, item: any) {
+    const selectElement = event.target as HTMLSelectElement;
+    const selectedOption = selectElement.value;
 
-  // Agora você tem a opção selecionada e o item correspondente.
-  // Você pode aplicar a opção ao item como desejar.
-  console.log(`Opção selecionada: ${selectedOption}, item: ${item.nome}`);
-}
-  
-  
-
+    // Agora você tem a opção selecionada e o item correspondente.
+    // Você pode aplicar a opção ao item como desejar.
+    console.log(`Opção selecionada: ${selectedOption}, item: ${item.nome}`);
+  }
 }

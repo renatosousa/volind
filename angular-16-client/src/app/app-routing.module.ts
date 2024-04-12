@@ -25,7 +25,7 @@ const routes: Routes = [
     path: 'ptax',
     component:  PtaxComponent
   },
-     { path: '', redirectTo: 'tutorials', pathMatch: 'full' },
+     { path: '', redirectTo: '', pathMatch: 'full' },
   { path: 'tutorials', component: TutorialsListComponent },
   { path: 'tutorials/:id', component: TutorialDetailsComponent },
   { path: 'add', component: AddTutorialComponent }

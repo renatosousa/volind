@@ -157,11 +157,23 @@ const INDICATORS : Indicator[] = [
 })
 export class IndicadoresService {
 
-  private indicadores : Indicator[] = INDICATORS;
+  private indicadores : Indicator[] = [];
   private apiUrl = environment.api;
   public listaDeIndicadores: any[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.listaIndicatorService().subscribe(d=>{
+      this.indicadores.push(d);
+
+    })
+
+  }
+
+  //retorna a lista de indicadores do servidor
+  listaIndicatorService() {
+    return this.http.get<any>(this.apiUrl+"actives")
+  }
+
 
 //resta funcao requisita lista de indicadores atualizados no servidor principal
   retornarListaDeIndicadores() : Indicator[] //{
@@ -182,21 +194,16 @@ export class IndicadoresService {
 
   //esta funcao retorar um indicador expecifico com suas caracteritiscas
   retornarIndicador(id: string): Indicator | undefined {
+
+
     if (this.indicadores != null) {
+
       return this.indicadores.find(indicator => indicator.id === id);
     }
     return undefined;
   }
 
-  private apiUrlg = 'https://serpapi.com/searches/1c06c86fe6aac672/6614c45dc504e9a928a9ba4b';
 
 
-  search(): Observable<any> {
-    const params = new HttpParams()
-      .set('engine', "google_finance")
-      .set('api_key', '47b1bc2702be1528e7558700b51cb991c4ed3a131701d489746d44dd6ec82c15')
-      .set('window', "MAX")
-      .set('q', "WMT:NYSE");
-    return this.http.get<any[]>(this.apiUrlg);
-  }
+
 }

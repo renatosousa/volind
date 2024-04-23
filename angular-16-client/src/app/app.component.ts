@@ -23,12 +23,18 @@ export class AppComponent implements OnInit{
   indicadores: Indicator[] = [];
 
     ngOnInit(): void {
+      this.indicadoresService.listaIndicatorService().subscribe(
+        d =>{
+          this.indicadores.push(d);
+        }
+      );
+
    // this.indicadoresService.retornarListaDeIndicadores().subscribe(
    //   data => {
    //     this.indicadores = data;
     //  }
       // )
-     this.indicadores = this.indicadoresService.retornarListaDeIndicadores();
+    // this.indicadores = this.indicadoresService.retornarListaDeIndicadores();
 
   }
 

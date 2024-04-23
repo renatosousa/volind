@@ -20,6 +20,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { AsyncPipe } from '@angular/common';
+import { AngularDraggableModule } from 'angular2-draggable';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { AsyncPipe } from '@angular/common';
     MatInputModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
-    AsyncPipe
+    AsyncPipe,
+    AngularDraggableModule
 
   ],
   providers: [],

@@ -59,9 +59,7 @@ export class VolatividadeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.indicatorService.search().subscribe(d => {
-      alert(d)
-    })
+
 
     this.router.params.subscribe(params => {
       this.indicator = this.requisitaIndicators(params['id'])

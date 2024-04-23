@@ -1,9 +1,0 @@
-com/volind/controller/VolatividadeController.class
-com/volind/model/Indicador.class
-com/volind/model/IndicatorType.class
-com/volind/controller/IndicadoresController.class
-com/volind/VolindApplication.class
-com/volind/controller/TutorialController.class
-com/volind/model/Tutorial.class
-com/volind/repository/TutorialRepository.class
-com/volind/controller/HomeController.class

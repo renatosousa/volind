@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -21,6 +21,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { AsyncPipe } from '@angular/common';
 import { AngularDraggableModule } from 'angular2-draggable';
+import { GoogleChartsModule } from 'angular-google-charts';
+import { GoogleChartsConfigService, googleChartsConfigFactory } from './services/google-charts-config.service';
+import { GOOGLE_CHARTS_LAZY_CONFIG } from 'angular-google-charts';
+import { PieChartComponent } from './components/chart/pie-chart/pie-chart.component';
 
 
 @NgModule({
@@ -28,7 +32,8 @@ import { AngularDraggableModule } from 'angular2-draggable';
     AppComponent,
     VolatividadeComponent,
     PtaxComponent,
-    LongandshortComponent
+    LongandshortComponent,
+    PieChartComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -48,10 +53,17 @@ import { AngularDraggableModule } from 'angular2-draggable';
     MatAutocompleteModule,
     ReactiveFormsModule,
     AsyncPipe,
-    AngularDraggableModule
+    AngularDraggableModule,
+    GoogleChartsModule.forRoot({ version: 'current' }),
+
 
   ],
-  providers: [],
+
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  providers: [
+    GoogleChartsConfigService,
+    {provide: GOOGLE_CHARTS_LAZY_CONFIG, useFactory: googleChartsConfigFactory, deps: [GoogleChartsConfigService]}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

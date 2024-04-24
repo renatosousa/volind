@@ -167,6 +167,7 @@ export class IndicadoresService {
 
     })
 
+
   }
 
   //retorna a lista de indicadores do servidor

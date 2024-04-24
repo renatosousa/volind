@@ -10,15 +10,29 @@
       class="example-list" cdkDropListSortingDisabled
       (cdkDropListDropped)="drop($event)">
       <div class="example-box" *ngFor="let item of featureIndicatorAplicate"
-      cdkDrag ngResizable> asdfasd {{item.nome}}</div>
+      cdkDrag ngResizable>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{item.nome}} </mat-card-title>
+          <mat-card-subtitle> {{' ('+item.descricao+ ') '}}</mat-card-subtitle>
+        </mat-card-header>
 
-    <div style="width:100px; heigth:121px">
-  <!-- <iframe src="https://serpapi.com/searches/1c06c86fe6aac672/6614c45dc504e9a928a9ba4b" frameborder="0"></iframe> -->
-    <!-- <iframe [src]="htmlContent" frameborder="1"></iframe> -->
+        <mat-card-content>
 
-</div>
+          <app-pie-chart></app-pie-chart>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button><mat-icon>save</mat-icon></button>
+          <button mat-button><mat-icon>list</mat-icon></button>
+        </mat-card-actions>
+      </mat-card>
+
+    </div>
+
+
     </div>
 </div>
+
 
 
 
@@ -74,6 +88,7 @@
        <mat-option *ngFor="let  featureIndicator of filteredOptions | async" [value]="featureIndicator" cdkDrag>
 
           {{featureIndicator.nome}}
+
      </mat-option>
     </div>
 

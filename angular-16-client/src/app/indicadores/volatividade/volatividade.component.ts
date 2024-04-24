@@ -8,7 +8,6 @@ import { IndicadoresService } from 'src/app/services/indicadores.service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { FeatureIndicator } from 'src/app/models/featureIndicator';
 
-
 @Component({
   selector: 'app-volatividade',
   templateUrl: './volatividade.component.html',
@@ -17,6 +16,8 @@ import { FeatureIndicator } from 'src/app/models/featureIndicator';
 
 })
 export class VolatividadeComponent implements OnInit {
+  width = 200;
+  heigth = 200;
   htmlContent: string = 'https://www.google.com/finance/quote/petr4:BVMF';
 
   myControl = new FormControl<FeatureIndicator | any>('');

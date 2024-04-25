@@ -204,6 +204,10 @@ export class IndicadoresService {
     return undefined;
   }
 
+  returnDataSetYahooFinance(url: string) {
+    return this.http.get<any>(url);
+  }
+
 
 
 

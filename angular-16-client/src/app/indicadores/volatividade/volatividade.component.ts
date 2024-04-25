@@ -28,10 +28,15 @@ export class VolatividadeComponent implements OnInit {
   featureIndicatorAplicate: FeatureIndicator[] = [];
 
 
+
   drop(event: CdkDragDrop<any>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+
     } else {
+      const result = event.previousContainer.data[event.previousIndex];
+
+      this.loadDataSetYahooFinance(result)
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
@@ -59,7 +64,6 @@ export class VolatividadeComponent implements OnInit {
 
 
   ngOnInit() {
-
 
 
     this.router.params.subscribe(params => {
@@ -102,5 +106,14 @@ export class VolatividadeComponent implements OnInit {
     // Agora você tem a opção selecionada e o item correspondente.
     // Você pode aplicar a opção ao item como desejar.
     console.log(`Opção selecionada: ${selectedOption}, item: ${item.nome}`);
+  }
+
+  loadDataSetYahooFinance(indicator: any) {
+alert(indicator.chart)
+    this.indicatorService.returnDataSetYahooFinance(indicator.chart).subscribe(
+      data =>{
+        alert(JSON.stringify(data))
+      }
+    )
   }
 }

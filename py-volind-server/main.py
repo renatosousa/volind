@@ -6,6 +6,9 @@ import pandas_datareader as pdr
 import yfinance
 from flask_cors import CORS
 from datetime import datetime
+import yfinance as yf  
+import pandas_datareader as pdr
+from yahoo_finance import Share
 
 
 app = flask = Flask(__name__)
@@ -27,6 +30,11 @@ def details():
     return r.json()
 
 #enviar lista de ativos
+
+@app.route('/test', methods=['GET'])
+def test(): 
+    return {"test": "test"}
+     
 
 @app.route('/actives', methods=['GET'])
 def activesDetails(): 
@@ -57,6 +65,27 @@ def activesDetails():
                     }
       
      return indicators
+
+@app.route('/activeinfo/<active>', methods=['GET'])
+def activeDetailsInfo(active):
+    print(f"Nenhum dado encontrado para o ativo: {jsonify(active)}")  # Imprime mensagem se não houver dados
+
+    # Obtenha dados históricos do ativo usando yfinance
+    stock = yf.Ticker(active)
+    hist = stock.history(period='1mo')  # Período de um mês
+
+    # Prepare os dados em formato JSON para o gráfico
+    data = {
+        'dates': hist.index.strftime('%Y-%m-%d').tolist(),
+        'open': hist['Open'].tolist(),
+        'high': hist['High'].tolist(),
+        'low': hist['Low'].tolist(),
+        'close': hist['Close'].tolist(),
+        'volume': hist['Volume'].tolist()
+    }
+
+    # Retorne os dados como JSON
+    return jsonify(data)
 
 
 

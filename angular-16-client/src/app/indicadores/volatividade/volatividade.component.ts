@@ -7,6 +7,7 @@ import { Indicator } from 'src/app/models/indicator.interface';
 import { IndicadoresService } from 'src/app/services/indicadores.service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { FeatureIndicator } from 'src/app/models/featureIndicator';
+import { CharService } from '../../services/char.service';
 
 @Component({
   selector: 'app-volatividade',
@@ -34,9 +35,12 @@ export class VolatividadeComponent implements OnInit {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
 
     } else {
-      const result = event.previousContainer.data[event.previousIndex];
 
+      const result = event.previousContainer.data[event.previousIndex];
       this.loadDataSetYahooFinance(result)
+
+
+
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
@@ -51,7 +55,7 @@ export class VolatividadeComponent implements OnInit {
 
   filteredOptions: Observable<any> | undefined = undefined;
 
-  constructor(private indicatorService: IndicadoresService, private router: ActivatedRoute, private breakpointObserver: BreakpointObserver) { }
+  constructor(private charService: CharService,private indicatorService: IndicadoresService, private router: ActivatedRoute, private breakpointObserver: BreakpointObserver) { }
 
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -108,12 +112,17 @@ export class VolatividadeComponent implements OnInit {
     console.log(`Opção selecionada: ${selectedOption}, item: ${item.nome}`);
   }
 
-  loadDataSetYahooFinance(indicator: any) {
-alert(indicator.chart)
-    this.indicatorService.returnDataSetYahooFinance(indicator.chart).subscribe(
-      data =>{
-        alert(JSON.stringify(data))
-      }
-    )
+
+  loadDataSetYahooFinance(active: any) {
+    this.indicatorService.detalhesActive(active.symbol).subscribe((data: any) => {
+    //  this.act = data;
+   //   this.setData(data);
+
+    });
   }
+
+
+  setData(act : any): void {
+    this.charService.setData(act);
+}
 }

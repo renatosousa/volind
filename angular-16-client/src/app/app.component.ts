@@ -25,7 +25,7 @@ export class AppComponent implements OnInit{
     ngOnInit(): void {
       this.indicadoresService.listaIndicatorService().subscribe(
         d =>{
-          this.indicadores.push(d);
+          this.indicadores = d;
         }
       );
 

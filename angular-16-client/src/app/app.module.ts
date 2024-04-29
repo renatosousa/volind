@@ -25,6 +25,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
 import { GoogleChartsConfigService, googleChartsConfigFactory } from './services/google-charts-config.service';
 import { GOOGLE_CHARTS_LAZY_CONFIG } from 'angular-google-charts';
 import { PieChartComponent } from './components/chart/pie-chart/pie-chart.component';
+import { GtableComponent } from './components/chart/gtable/gtable.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { PieChartComponent } from './components/chart/pie-chart/pie-chart.compon
     VolatividadeComponent,
     PtaxComponent,
     LongandshortComponent,
-    PieChartComponent
+    PieChartComponent,
+    GtableComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -51,7 +53,7 @@ import { PieChartComponent } from './components/chart/pie-chart/pie-chart.compon
     FormsModule,
     MatInputModule,
     MatAutocompleteModule,
-    ReactiveFormsModule,
+      ReactiveFormsModule,
     AsyncPipe,
     AngularDraggableModule,
     GoogleChartsModule.forRoot({ version: 'current' }),

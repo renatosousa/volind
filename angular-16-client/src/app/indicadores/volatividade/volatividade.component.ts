@@ -37,7 +37,7 @@ export class VolatividadeComponent implements OnInit {
     } else {
 
       const result = event.previousContainer.data[event.previousIndex];
-      this.loadDataSetYahooFinance(result)
+   //   this.loadDataSetYahooFinance(result)
 
 
 
@@ -74,6 +74,7 @@ export class VolatividadeComponent implements OnInit {
       this.indicator = this.requisitaIndicators(params['id'])
       //RETORNA INDICADORES SELECIONADOS EM SUAS POSICOES E CARACTERISTICAS:
       //LOADING...
+
       this.featureIndicatorAplicate = [];
 
       this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -101,6 +102,7 @@ export class VolatividadeComponent implements OnInit {
   }
 
   private requisitaIndicators(id: string) {
+   
     return this.indicator = this.indicatorService.retornarIndicador(id);
   }
   applyOption(event: Event, item: any) {
@@ -113,16 +115,7 @@ export class VolatividadeComponent implements OnInit {
   }
 
 
-  loadDataSetYahooFinance(active: any) {
-    this.indicatorService.detalhesActive(active.symbol).subscribe((data: any) => {
-    //  this.act = data;
-   //   this.setData(data);
-
-    });
-  }
 
 
-  setData(act : any): void {
-    this.charService.setData(act);
-}
+
 }

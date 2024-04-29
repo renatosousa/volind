@@ -5,28 +5,20 @@ declare var google: any;
 
 @Component({
   selector: 'app-pie-chart',
-  template: `<div #pieChart style="width: 40vw; height: 40vh;"></div>`
+  template: `<div #pieChart style="width: 30vw; height: 30vh;"></div>`
 })
 export class PieChartComponent implements AfterViewInit{
   @Input() active: any;  // Propriedade de entrada para receber o objeto
   dataSet : any = [];
-
+  nameActive = "";
   @ViewChild('pieChart')
   pieChart!: ElementRef;
+
   constructor(private indicatorService: IndicadoresService){
 
   }
 
   drawChart = () => {
-
-//   const data = google.visualization.arrayToDataTable([
-//     ['Task', 'Hours per Day'],
-//     ['Work', 11],
-//     ['Eat', 2],
-//     ['Commute', 2],
-//     ['Watch TV', 2],
-//     ['Sleep', 7]
-// ]);
 
 var data = new google.visualization.DataTable();
  for (let i = 0; i < this.dataSet.headers.length; i++) {
@@ -36,14 +28,24 @@ var data = new google.visualization.DataTable();
   console.log(header);
 }
 data.addRows(this.dataSet.dataSet);
+const options = {
+  title: this.dataSet.nameActive,
+  legend: {
+      position: 'bottom',
+  },
+  width: this.pieChart.nativeElement.clientWidth,
+  height: this.pieChart.nativeElement.clientHeight,
+  trendlines: {
+      0: {
+          type: 'exponential',
+          visibleInLegend: true,
+      }
+  }
+};
 
-   const options = {
-    title: 'My Daily Activities',
-    legend: {position: 'top'}
-  };
 
 
-  const chart = new google.visualization.LineChart(this.pieChart.nativeElement);
+  const chart = new google.visualization.AreaChart(this.pieChart.nativeElement);
 
 
   chart.draw(data, options);
@@ -55,8 +57,16 @@ data.addRows(this.dataSet.dataSet);
 
 
   }
+  getNameActive(active : any){
+    this.indicatorService.getNameActive(active).subscribe((data: any) => {
+      this.nameActive = data;
+      console.log(data);
+    })
+  }
 
   loadDataSetYahooFinance(active: any) {
+    this.getNameActive(active.symbol);
+
     this.indicatorService.detalhesActive(active.symbol).subscribe((data: any) => {
      this.dataSet = data;
       console.log(JSON.stringify(data.dataSet));

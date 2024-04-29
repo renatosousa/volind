@@ -12,151 +12,7 @@ import { catchError, flatMap, map } from 'rxjs/operators';
 
 
 
-const INDICATORS : Indicator[] = [
-  { id: "asdfasdfasdfa",
-    indicatorType: "LongAndShort",
-    descricao: "Long And Short",
-    logo: "chart",
-    rota: "longandshort",
-     featureIndicator: [
-      {
-        nome: "PETR4",
-        link: "www.bolsadevalores.com.br/opcao/PETR4",
-        fonte: "Bolsa de Valores",
-        descricao: "Opção de compra de ações da Petrobras",
-        precoExercicio: 28.50,
-        dataExpiracao: new Date(2022, 11, 17),
-        dataUltimaAtualizacao: new Date()
-      },
-      {
-        nome: "VALE3",
-        link: "www.bolsadevalores.com.br/opcao/VALE3",
-        fonte: "Bolsa de Valores",
-        descricao: "Opção de venda de ações da Vale",
-        precoExercicio: 92.00,
-        dataExpiracao: new Date(2022, 11, 17),
-        dataUltimaAtualizacao: new Date(),
-      },
-      {
-        nome: "ITUB4",
-        link: "www.bolsadevalores.com.br/opcao/ITUB4",
-        fonte: "Bolsa de Valores",
-        descricao: "Opção de compra de ações do Itaú",
-        precoExercicio: 30.00,
-        dataExpiracao: new Date(2022, 11, 17),
-        dataUltimaAtualizacao: new Date(),
-      }
-    ]
-  },
-  {
-    id: "412342134234123",
-    indicatorType: "Petax",
-    descricao: "Ptax",
-    logo: "trending",
-    rota: "ptax",
-  featureIndicator: [
-      {
-        nome: "X3",
-        link: "www.bolsadevalores.com.br/opcao/PETR4",
-        fonte: "Bolsa de Valores",
-        descricao: "Opção de compra de ações da Petrobras",
-        precoExercicio: 28.50,
-        dataExpiracao: new Date(2022, 11, 17),
-        dataUltimaAtualizacao: new Date()
-      },
-      {
-        nome: "X2",
-        link: "www.bolsadevalores.com.br/opcao/VALE3",
-        fonte: "Bolsa de Valores",
-        descricao: "Opção de venda de ações da Vale",
-        precoExercicio: 92.00,
-        dataExpiracao: new Date(2022, 11, 17),
-        dataUltimaAtualizacao: new Date(),
-      },
-      {
-        nome: "X4",
-        link: "www.bolsadevalores.com.br/opcao/ITUB4",
-        fonte: "Bolsa de Valores",
-        descricao: "Opção de compra de ações do Itaú",
-        precoExercicio: 30.00,
-        dataExpiracao: new Date(2022, 11, 17),
-        dataUltimaAtualizacao: new Date(),
-      }
-    ]  },
-  {
-    id: "412asdfasd342134234123",
-    indicatorType: "VolatividadeImplicita",
-    descricao: "Volatividade Implícita",
-    logo: "trending_up",
-    rota: "volatividade",
-      featureIndicator: [
-      {
-        nome: "b12",
-        link: "www.bolsadevalores.com.br/opcao/PETR4",
-        fonte: "Bolsa de Valores",
-        descricao: "Opção de compra de ações da Petrobras",
-        precoExercicio: 28.50,
-        dataExpiracao: new Date(2022, 11, 17),
-        dataUltimaAtualizacao: new Date()
-      },
-      {
-        nome: "b11",
-        link: "www.bolsadevalores.com.br/opcao/VALE3",
-        fonte: "Bolsa de Valores",
-        descricao: "Opção de venda de ações da Vale",
-        precoExercicio: 92.00,
-        dataExpiracao: new Date(2022, 11, 17),
-        dataUltimaAtualizacao: new Date(),
-      },
-      {
-        nome: "b3",
-        link: "www.bolsadevalores.com.br/opcao/ITUB4",
-        fonte: "Bolsa de Valores",
-        descricao: "Opção de compra de ações do Itaú",
-        precoExercicio: 30.00,
-        dataExpiracao: new Date(2022, 11, 17),
-        dataUltimaAtualizacao: new Date(),
-      }
-    ]
 
-  },
-  {
-     id: "234123412342tt",
-    indicatorType: "options",
-    descricao: "Opcoes de volatividade",
-    logo: "option",
-    rota: "options",
-    featureIndicator: [
-      {
-        nome: "V3",
-        link: "www.bolsadevalores.com.br/opcao/PETR4",
-        fonte: "Bolsa de Valores",
-        descricao: "Opção de compra de ações da Petrobras",
-        precoExercicio: 28.50,
-        dataExpiracao: new Date(2022, 11, 17),
-        dataUltimaAtualizacao: new Date()
-      },
-      {
-        nome: "V2",
-        link: "www.bolsadevalores.com.br/opcao/VALE3",
-        fonte: "Bolsa de Valores",
-        descricao: "Opção de venda de ações da Vale",
-        precoExercicio: 92.00,
-        dataExpiracao: new Date(2022, 11, 17),
-        dataUltimaAtualizacao: new Date(),
-      },
-      {
-        nome: "V1",
-        link: "www.bolsadevalores.com.br/opcao/ITUB4",
-        fonte: "Bolsa de Valores",
-        descricao: "Opção de compra de ações do Itaú",
-        precoExercicio: 30.00,
-        dataExpiracao: new Date(2022, 11, 17),
-        dataUltimaAtualizacao: new Date(),
-      }
-    ]
-
-  }]
 
 @Injectable({
   providedIn: 'root'
@@ -169,7 +25,7 @@ export class IndicadoresService {
 
   constructor(private http: HttpClient) {
     this.listaIndicatorService().subscribe(d=>{
-      this.indicadores.push(d);
+      this.indicadores = d;
    //   this.getAct();
     })
 
@@ -347,6 +203,17 @@ subscribeToWebsocket() {
   });
 
   this.subject.next({ subscribe: ['AAPL'] });
+}
+
+
+//---ate aq
+
+getNameActive(active: any){
+  return this.http.get<any>(`${this.apiUrl,active }/activename`);
+}
+
+getDataSetOptions(option: any){
+  return this.http.get<any>(`${this.apiUrl}/datasetoptions/${option}`);
 }
 
 

@@ -5,7 +5,7 @@
       <h2>{{indicator?.descricao}}</h2>
 
 
-<div cdkDropList style="width: 900px; height: 100vh; border: 10px;"
+<div cdkDropList style="width: 100vw; height: 100vh; border: 10px;"
       [cdkDropListData]="featureIndicatorAplicate"
       class="example-list" cdkDropListSortingDisabled
       (cdkDropListDropped)="drop($event)"   >
@@ -13,12 +13,14 @@
       cdkDrag ngResizable>
       <mat-card>
         <mat-card-header>
-          <mat-card-subtitle> {{' ('+item.descricao+ ') '}}</mat-card-subtitle>
+
+          <!-- <mat-card-subtitle> {{' ('+item.descricao+ ') '}}</mat-card-subtitle> -->
         </mat-card-header>
 
         <mat-card-content>
 
-          <app-pie-chart [active]='item'></app-pie-chart>
+          <app-gtable *ngIf="item.modo === 'table'" [table]='item'></app-gtable>
+          <app-pie-chart  *ngIf="item.modo === 'active'" [active]='item'></app-pie-chart>
         </mat-card-content>
         <mat-card-actions>
           <button mat-button><mat-icon>save</mat-icon></button>

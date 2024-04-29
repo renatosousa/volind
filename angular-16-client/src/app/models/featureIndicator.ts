@@ -5,6 +5,7 @@ export interface FeatureIndicator {
   descricao: string;
   precoExercicio: number;
   dataExpiracao: Date;
+  modo: string;
   dataUltimaAtualizacao: Date;
 }
 

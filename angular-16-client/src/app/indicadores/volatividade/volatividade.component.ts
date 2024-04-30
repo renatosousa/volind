@@ -27,8 +27,7 @@ export class VolatividadeComponent implements OnInit {
   indicatorAplicate: Indicator | undefined;
   featureIndicator: FeatureIndicator[] = [];
   featureIndicatorAplicate: FeatureIndicator[] = [];
-
-
+  modoesc: string = 'CALLS'
 
   drop(event: CdkDragDrop<any>) {
     if (event.previousContainer === event.container) {
@@ -102,7 +101,7 @@ export class VolatividadeComponent implements OnInit {
   }
 
   private requisitaIndicators(id: string) {
-   
+
     return this.indicator = this.indicatorService.retornarIndicador(id);
   }
   applyOption(event: Event, item: any) {

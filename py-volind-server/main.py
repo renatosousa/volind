@@ -98,6 +98,7 @@ def activesDetails():
      actives = { 
             "id": "asdfasdfasdfqa",
             "indicatorType": "Ativos",
+            "tituloOpcoes": "Ativos disponíveis",
             "descricao": "Meus Ativos",
             "logo": "chart",
             "rota": "longandshort",
@@ -107,11 +108,13 @@ def activesDetails():
      options = {
             "id": "options",
             "indicatorType": "Opções",
+            "tituloOpcoes": "Opções disponíveis",
             "descricao": "Minhas Opções",
             "logo": "chart",
             "rota": "opcoes",
             "modo":"table",
-            "featureIndicator": listaOpcoes
+            "featureIndicator": listaOpcoes,
+            "tipoCompra": 'CALLS'
      }
      indicators.append(actives) 
      indicators.append(options)

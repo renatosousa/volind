@@ -19,12 +19,11 @@
 
         <mat-card-content>
 
-          <app-gtable *ngIf="item.modo === 'table'" [table]='item'></app-gtable>
+          <app-gtable *ngIf="item.modo === 'table'" [table]='item' [modoCompra]="modoesc"></app-gtable>
           <app-pie-chart  *ngIf="item.modo === 'active'" [active]='item'></app-pie-chart>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button><mat-icon>save</mat-icon></button>
-          <button mat-button><mat-icon>list</mat-icon></button>
+
         </mat-card-actions>
       </mat-card>
 
@@ -64,8 +63,15 @@
         <div style="padding: 10px; margin-bottom: 60px; ">
 
         </div>
-            <h2>Indicadores Disponíveis</h2>
+            <h2> {{indicator?.tituloOpcoes}}</h2>
 
+
+    <div *ngIf="indicator?.modo === 'table'">
+      <mat-radio-group aria-label="Select an option"  [(ngModel)]="modoesc">
+        <mat-radio-button  value="CALLS" [selected]="true">Compra</mat-radio-button>
+        <mat-radio-button  value="PUTS">Venda</mat-radio-button>
+      </mat-radio-group>
+    </div>
 
         <div style="padding: 10px;">
           <mat-nav-list color="primary">
@@ -86,7 +92,7 @@
   <div class="volind-container">
     <div cdkDropList [cdkDropListData]="indicator?.featureIndicator" class="volind-list"
       (cdkDropListDropped)="drop($event)">
-       <mat-option *ngFor="let  featureIndicator of filteredOptions | async" [value]="featureIndicator" cdkDrag>
+       <mat-option *ngFor="let  featureIndicator of filteredOptions | async" [value]="featureIndicator" cdkDrag >
 
           {{featureIndicator.nome}}
 

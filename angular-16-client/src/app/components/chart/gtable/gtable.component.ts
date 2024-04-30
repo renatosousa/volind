@@ -11,7 +11,8 @@ export class GtableComponent implements AfterViewInit{
   dataSet : any;
   @ViewChild('tableElement')
   tableElement!: ElementRef;
-
+  modoCompraEscolhido : any;
+  @Input() modoCompra: any;  // Propriedade de entrada para receber o objeto
   constructor(private indicatorService : IndicadoresService) { }
   ngAfterViewInit() {
    // alert("teste"+JSON.stringify(this.table));
@@ -32,8 +33,15 @@ export class GtableComponent implements AfterViewInit{
 
 
      // alert( Object.keys(this.dataSet.dataSet.puts));
+    if(this.modoCompra == "CALLS"){
+      data.addRows( this.dataSet.dataSetCalls);
 
-   data.addRows( this.dataSet.dataSetCalls);
+    }
+    if(this.modoCompra === "PUTS"){
+      data.addRows( this.dataSet.dataSetPuts);
+
+    }
+   data.addRows( this.dataSet.dataSetPuts);
 
 
     const chart = new google.visualization.Table(this.tableElement.nativeElement);

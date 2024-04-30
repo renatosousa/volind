@@ -26,6 +26,7 @@ import { GoogleChartsConfigService, googleChartsConfigFactory } from './services
 import { GOOGLE_CHARTS_LAZY_CONFIG } from 'angular-google-charts';
 import { PieChartComponent } from './components/chart/pie-chart/pie-chart.component';
 import { GtableComponent } from './components/chart/gtable/gtable.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 @NgModule({
@@ -53,9 +54,10 @@ import { GtableComponent } from './components/chart/gtable/gtable.component';
     FormsModule,
     MatInputModule,
     MatAutocompleteModule,
-      ReactiveFormsModule,
+    ReactiveFormsModule,
     AsyncPipe,
     AngularDraggableModule,
+    MatRadioModule,
     GoogleChartsModule.forRoot({ version: 'current' }),
 
 
